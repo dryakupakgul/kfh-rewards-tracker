@@ -150,42 +150,6 @@ DEALS = [
         'points': '3500 KP'
     },
     {
-        'id': '112845',
-        'title': '$5 iTunes Gift Card',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112845/5-iTunes-Gift-Card',
-        'points': '2000 KP'
-    },
-    {
-        'id': '115336',
-        'title': '$10 Google Play Gift Card',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115336/10-Google-Play-Gift-Card',
-        'points': '3500 KP'
-    },
-    {
-        'id': '115346',
-        'title': '$10 Amazon USA Gift Card',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115346/Amazon-10-USA-Gift-Card',
-        'points': '3500 KP'
-    },
-    {
-        'id': '115391',
-        'title': '$10 Nintendo USA Gift Card',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115391/Nintendo-10-USA-Gift-Card',
-        'points': '3500 KP'
-    },
-    {
-        'id': '115395',
-        'title': '$25 XBOX USA Gift Card',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115395/XBOX-25-USA-Gift-Card',
-        'points': '8000 KP'
-    },
-    {
-        'id': '115394',
-        'title': 'Xbox Live 3 months subscription',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115394/Xbox-Live-3-months-free-subscription',
-        'points': '8000 KP'
-    },
-    {
         'id': '115357',
         'title': '5 KD from Zain',
         'url': 'https://rewards.kfh/redemption/dealdetails/115357/5KD-from-Zain',
@@ -198,52 +162,10 @@ DEALS = [
         'points': '5000 KP'
     },
     {
-        'id': '115147',
-        'title': '3 KD Off on Starzplay Sports',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115147/3-KD-Off-on-Starzplay--Sports-Package',
-        'points': '3000 KP'
-    },
-    {
-        'id': '113933',
-        'title': '5 KD Off from AlFuhood App',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113933/5-KD-Off-from-AlFuhood-App--website',
-        'points': '5000 KP'
-    },
-    {
-        'id': '115667',
-        'title': '5 KD voucher from Blue outdoors',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115667/5-KD-voucher-from-Blue-outdoors',
-        'points': '5000 KP'
-    },
-    {
-        'id': '115490',
-        'title': '50 KD off from Flowers & Beyond',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115490/50-KD-off-from-Flowers--Beyond',
-        'points': '50000 KP'
-    },
-    {
-        'id': '112920',
-        'title': '20 KD Off from Best Al-Yousifi',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112920/20-KD-Off-from-Best-Al-Yousifi',
-        'points': '20000 KP'
-    },
-    {
         'id': '113150',
         'title': '20 KD Off from H&S Store',
         'url': 'https://rewards.kfh/redemption/dealdetails/113150/20-KD-Off-from-HS-Store',
         'points': '20000 KP'
-    },
-    {
-        'id': '115173',
-        'title': '10 KD voucher from Usim',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115173/Get-10KD-voucher-from-Usim',
-        'points': '10000 KP'
-    },
-    {
-        'id': '112804',
-        'title': '15% discount from Pharmatee',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112804/15-discount-from-Pharmatee',
-        'points': '100 KP'
     }
 ]
 
@@ -460,7 +382,7 @@ def index():
 if __name__ == '__main__':
     # Fetch initial data
     logger.info("Starting KFH Rewards Tracker API...")
-    logger.info("Fetching initial data...")
+    logger.info("Skipping initial data fetch to prevent timeout")
     try:
         fetch_all_deals()
         logger.info("Initial data loaded successfully")
