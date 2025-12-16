@@ -1,0 +1,156 @@
+name: Monitor KFH Deals
+
+on:
+  schedule:
+    # Run every 10 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-deals:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        pip install requests beautifulsoup4
+    
+    - name: Fetch deal data
+      id: fetch
+      run: |
+        python3 << 'EOF'
+        import json
+        import requests
+        from bs4 import BeautifulSoup
+        import re
+        from datetime import datetime
+
+        DEALS = [
+            {'id': '113316', 'title': '5 KD Off from Talabat', 'url': 'https://rewards.kfh/redemption/dealdetails/113316/3-KD-Off-from-Talabat'},
+            {'id': '115315', 'title': '$10 iTunes Gift Card', 'url': 'https://rewards.kfh/redemption/dealdetails/115315/10-iTunes-Gift-Card'},
+            {'id': '112772', 'title': '5 KD Deliveroo Wallet recharge', 'url': 'https://rewards.kfh/redemption/dealdetails/112772/5-KD-Deliveroo-Wallet-recharge'},
+            {'id': '112773', 'title': '3 KD Deliveroo Wallet recharge', 'url': 'https://rewards.kfh/redemption/dealdetails/112773/3-KD-Deliveroo-Wallet-recharge'}
+        ]
+
+        results = []
+        out_of_stock = []
+
+        for deal in DEALS:
+            try:
+                headers = {'User-Agent': 'Mozilla/5.0'}
+                response = requests.get(deal['url'], headers=headers, timeout=10)
+                soup = BeautifulSoup(response.text, 'html.parser')
+                
+                text = soup.get_text()
+                match = re.search(r'(\d+)\s+vouchers?\s+left', text, re.IGNORECASE)
+                
+                quantity = int(match.group(1)) if match else 0
+                
+                result = {
+                    'id': deal['id'],
+                    'title': deal['title'],
+                    'quantity': quantity,
+                    'timestamp': datetime.now().isoformat()
+                }
+                results.append(result)
+                
+                if quantity == 0:
+                    out_of_stock.append(deal['title'])
+                
+                print(f"✓ {deal['title']}: {quantity} vouchers")
+            except Exception as e:
+                print(f"✗ Error fetching {deal['title']}: {e}")
+
+        # Save to data directory
+        import os
+        os.makedirs('data', exist_ok=True)
+        
+        with open('data/latest.json', 'w') as f:
+            json.dump(results, f, indent=2)
+
+        # Output for GitHub Actions
+        with open('data/out_of_stock.txt', 'w') as f:
+            f.write('\n'.join(out_of_stock) if out_of_stock else 'None')
+
+        print(f"\n📊 Summary: {len(results)} deals checked, {len(out_of_stock)} out of stock")
+        EOF
+    
+    - name: Read out of stock deals
+      id: check_stock
+      run: |
+        OUT_OF_STOCK=$(cat data/out_of_stock.txt)
+        echo "out_of_stock=$OUT_OF_STOCK" >> $GITHUB_OUTPUT
+        if [ "$OUT_OF_STOCK" != "None" ]; then
+          echo "has_alert=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_alert=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit updated data
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add data/
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update deal data - $(date +'%Y-%m-%d %H:%M:%S')"
+        git push || echo "No changes to push"
+    
+    - name: Send notification (if out of stock)
+      if: steps.check_stock.outputs.has_alert == 'true'
+      run: |
+        echo "🚨 ALERT: Out of stock deals detected!"
+        echo "${{ steps.check_stock.outputs.out_of_stock }}"
+        
+        # Optional: Send to Discord/Slack/Telegram
+        # Uncomment and configure webhook URL in repository secrets
+        
+        # Discord webhook
+        # curl -X POST "${{ secrets.DISCORD_WEBHOOK }}" \
+        #   -H "Content-Type: application/json" \
+        #   -d "{\"content\": \"🚨 KFH Rewards Alert: Out of stock deals detected!\n${{ steps.check_stock.outputs.out_of_stock }}\"}"
+        
+        # Telegram
+        # curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+        #   -d "chat_id=${{ secrets.TELEGRAM_CHAT_ID }}" \
+        #   -d "text=🚨 KFH Rewards Alert: Out of stock deals detected!%0A${{ steps.check_stock.outputs.out_of_stock }}"
+        
+        # Slack webhook
+        # curl -X POST "${{ secrets.SLACK_WEBHOOK }}" \
+        #   -H "Content-Type: application/json" \
+        #   -d "{\"text\": \"🚨 KFH Rewards Alert: Out of stock deals detected!\n${{ steps.check_stock.outputs.out_of_stock }}\"}"
+    
+    - name: Generate summary
+      run: |
+        echo "## KFH Deals Status 📊" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Last checked: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f data/latest.json ]; then
+          python3 << 'EOF' >> $GITHUB_STEP_SUMMARY
+        import json
+        
+        with open('data/latest.json', 'r') as f:
+            deals = json.load(f)
+        
+        print("| Deal | Quantity | Status |")
+        print("|------|----------|--------|")
+        
+        for deal in deals:
+            qty = deal['quantity']
+            if qty == 0:
+                status = "🔴 Out of Stock"
+            elif qty <= 100:
+                status = "🟡 Low Stock"
+            else:
+                status = "🟢 In Stock"
+            print(f"| {deal['title']} | {qty} | {status} |")
+        EOF
+        fi

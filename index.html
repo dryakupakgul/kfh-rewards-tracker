@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFH Rewards Tracker - Live Data</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00d4aa;
+            --secondary: #ff6b9d;
+            --warning: #ffa940;
+            --danger: #ff4757;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .api-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background: var(--primary);
+        }
+
+        .status-dot.disconnected {
+            background: var(--danger);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 212, 170, 0.2);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .refresh-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary) 0%, #00b894 100%);
+            color: var(--dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        button.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--dark);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .auto-refresh {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        input[type="text"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-family: 'Space Mono', monospace;
+            width: 200px;
+        }
+
+        select {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+        }
+
+        .last-updated {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-align: right;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .deal-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .deal-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .deal-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 212, 170, 0.3);
+        }
+
+        .deal-card.out-of-stock {
+            border-color: var(--danger);
+            opacity: 0.7;
+        }
+
+        .deal-card.out-of-stock::before {
+            background: var(--danger);
+        }
+
+        .deal-card.low-stock {
+            border-color: var(--warning);
+        }
+
+        .deal-card.low-stock::before {
+            background: var(--warning);
+        }
+
+        .deal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .deal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--light);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .status-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+
+        .status-badge.in-stock {
+            background: rgba(0, 212, 170, 0.2);
+            color: var(--primary);
+        }
+
+        .status-badge.low-stock {
+            background: rgba(255, 169, 64, 0.2);
+            color: var(--warning);
+        }
+
+        .status-badge.out-of-stock {
+            background: rgba(255, 71, 87, 0.2);
+            color: var(--danger);
+        }
+
+        .deal-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .info-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .quantity {
+            color: var(--primary);
+        }
+
+        .quantity.low {
+            color: var(--warning);
+        }
+
+        .quantity.zero {
+            color: var(--danger);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.low {
+            background: linear-gradient(90deg, var(--warning), #ff8c42);
+        }
+
+        .progress-fill.zero {
+            background: var(--danger);
+        }
+
+        .deal-link {
+            display: block;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            padding: 0.75rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .deal-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .points-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: var(--gray);
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--danger) 0%, #ff6348 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(255, 71, 87, 0.4);
+            z-index: 1000;
+            animation: slideInRight 0.5s ease-out;
+            max-width: 400px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .notification-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .notification-body {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .close-notification {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            line-height: 1;
+        }
+
+        .error-message {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .notification {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>KFH REWARDS</h1>
+            <div class="subtitle">Live Deal Tracker Dashboard</div>
+            <div class="api-status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <div id="errorContainer"></div>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-label">Total Deals</div>
+                <div class="stat-value" id="totalDeals">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">In Stock</div>
+                <div class="stat-value" id="inStock">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Low Stock</div>
+                <div class="stat-value" id="lowStock">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Out of Stock</div>
+                <div class="stat-value" id="outOfStock">-</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="refresh-controls">
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <label style="font-size: 0.85rem;">API URL:</label>
+                    <input type="text" id="apiUrl" value="http://localhost:5000" placeholder="http://localhost:5000">
+                </div>
+                <button id="refreshBtn">Refresh Now</button>
+                <div class="auto-refresh">
+                    <input type="checkbox" id="autoRefresh" checked>
+                    <label for="autoRefresh">Auto-refresh every</label>
+                    <select id="refreshInterval">
+                        <option value="300">5 min</option>
+                        <option value="600" selected>10 min</option>
+                        <option value="1800">30 min</option>
+                        <option value="3600">1 hour</option>
+                    </select>
+                </div>
+            </div>
+            <div class="last-updated" id="lastUpdated">Never updated</div>
+        </div>
+
+        <div class="deals-grid" id="dealsGrid"></div>
+    </div>
+
+    <script>
+        let refreshTimer = null;
+        let notificationTimeout = null;
+        let previousQuantities = {};
+        let apiConnected = false;
+
+        function getApiUrl() {
+            return document.getElementById('apiUrl').value.trim();
+        }
+
+        function updateConnectionStatus(connected, message = '') {
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+            
+            apiConnected = connected;
+            statusDot.className = `status-dot ${connected ? 'connected' : 'disconnected'}`;
+            statusText.textContent = message || (connected ? 'Connected' : 'Disconnected');
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    <strong>⚠️ Error:</strong> ${message}
+                </div>
+            `;
+            setTimeout(() => {
+                errorContainer.innerHTML = '';
+            }, 10000);
+        }
+
+        function getStatusClass(quantity) {
+            if (quantity === 0) return 'out-of-stock';
+            if (quantity <= 100) return 'low-stock';
+            return 'in-stock';
+        }
+
+        function getStatusText(quantity) {
+            if (quantity === 0) return 'Out of Stock';
+            if (quantity <= 100) return 'Low Stock';
+            return 'In Stock';
+        }
+
+        function getQuantityClass(quantity) {
+            if (quantity === 0) return 'zero';
+            if (quantity <= 100) return 'low';
+            return '';
+        }
+
+        function getProgressPercentage(quantity, initialQuantity) {
+            if (!initialQuantity || initialQuantity === 0) return 0;
+            return Math.min((quantity / initialQuantity) * 100, 100);
+        }
+
+        async function fetchDealsFromAPI() {
+            const apiUrl = getApiUrl();
+            
+            try {
+                updateConnectionStatus(false, 'Fetching...');
+                
+                const response = await fetch(`${apiUrl}/api/deals`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                updateConnectionStatus(true, data.cached ? 'Connected (cached)' : 'Connected (live)');
+                
+                return data.deals;
+            } catch (error) {
+                console.error('Error fetching from API:', error);
+                updateConnectionStatus(false, `Error: ${error.message}`);
+                showError(`Failed to connect to API at ${apiUrl}. Make sure the backend is running.`);
+                throw error;
+            }
+        }
+
+        async function updateDeals() {
+            const refreshBtn = document.getElementById('refreshBtn');
+            refreshBtn.classList.add('loading');
+            refreshBtn.disabled = true;
+
+            try {
+                const dealsData = await fetchDealsFromAPI();
+                
+                if (dealsData && dealsData.length > 0) {
+                    // Store initial quantities if not set
+                    dealsData.forEach(deal => {
+                        if (!previousQuantities[deal.id]) {
+                            previousQuantities[deal.id] = {
+                                quantity: deal.quantity,
+                                initial: deal.quantity
+                            };
+                        }
+                    });
+
+                    renderDeals(dealsData);
+                    updateStats(dealsData);
+                    checkForNotifications(dealsData);
+                    
+                    document.getElementById('lastUpdated').textContent = 
+                        `Last updated: ${new Date().toLocaleString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                            month: 'short',
+                            day: 'numeric'
+                        })}`;
+                }
+            } catch (error) {
+                console.error('Error updating deals:', error);
+            } finally {
+                refreshBtn.classList.remove('loading');
+                refreshBtn.disabled = false;
+            }
+        }
+
+        function renderDeals(dealsData) {
+            const grid = document.getElementById('dealsGrid');
+            
+            if (!dealsData || dealsData.length === 0) {
+                grid.innerHTML = '<div style="text-align: center; color: var(--gray);">No deals available</div>';
+                return;
+            }
+
+            grid.innerHTML = dealsData.map(deal => {
+                const initialQuantity = previousQuantities[deal.id]?.initial || deal.quantity || 1000;
+                
+                return `
+                    <div class="deal-card ${getStatusClass(deal.quantity)}">
+                        <div class="deal-header">
+                            <div class="deal-title">
+                                ${deal.title}
+                                <div class="points-badge">${deal.points}</div>
+                            </div>
+                            <div class="status-badge ${getStatusClass(deal.quantity)}">
+                                ${getStatusText(deal.quantity)}
+                            </div>
+                        </div>
+                        <div class="deal-info">
+                            <div class="info-row">
+                                <span class="info-label">Vouchers Remaining</span>
+                                <span class="info-value quantity ${getQuantityClass(deal.quantity)}">
+                                    ${deal.quantity}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${getQuantityClass(deal.quantity)}" 
+                                 style="width: ${getProgressPercentage(deal.quantity, initialQuantity)}%"></div>
+                        </div>
+                        <a href="${deal.url}" target="_blank" class="deal-link">View Deal on KFH</a>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateStats(dealsData) {
+            const total = dealsData.length;
+            const inStock = dealsData.filter(d => d.quantity > 100).length;
+            const lowStock = dealsData.filter(d => d.quantity > 0 && d.quantity <= 100).length;
+            const outOfStock = dealsData.filter(d => d.quantity === 0).length;
+
+            document.getElementById('totalDeals').textContent = total;
+            document.getElementById('inStock').textContent = inStock;
+            document.getElementById('lowStock').textContent = lowStock;
+            document.getElementById('outOfStock').textContent = outOfStock;
+        }
+
+        function checkForNotifications(dealsData) {
+            const outOfStockDeals = dealsData.filter(d => d.quantity === 0);
+            const lowStockDeals = dealsData.filter(d => d.quantity > 0 && d.quantity <= 50);
+            
+            if (outOfStockDeals.length > 0) {
+                showNotification(outOfStockDeals, 'out-of-stock');
+            } else if (lowStockDeals.length > 0) {
+                const newLowStock = lowStockDeals.filter(deal => {
+                    const prev = previousQuantities[deal.id];
+                    return !prev || (prev.quantity > 50 && deal.quantity <= 50);
+                });
+                
+                if (newLowStock.length > 0) {
+                    showNotification(newLowStock, 'low-stock');
+                }
+            }
+
+            // Update previous quantities
+            dealsData.forEach(deal => {
+                if (previousQuantities[deal.id]) {
+                    previousQuantities[deal.id].quantity = deal.quantity;
+                } else {
+                    previousQuantities[deal.id] = {
+                        quantity: deal.quantity,
+                        initial: deal.quantity
+                    };
+                }
+            });
+        }
+
+        function showNotification(dealsToNotify, type) {
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+            if (notificationTimeout) clearTimeout(notificationTimeout);
+
+            const isOutOfStock = type === 'out-of-stock';
+            const emoji = isOutOfStock ? '⚠️' : '⚡';
+            const title = isOutOfStock ? 'Out of Stock Alert' : 'Low Stock Alert';
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <button class="close-notification" onclick="this.parentElement.remove()">×</button>
+                <div class="notification-title">${emoji} ${title}</div>
+                <div class="notification-body">
+                    ${dealsToNotify.length} deal${dealsToNotify.length > 1 ? 's' : ''} ${isOutOfStock ? 'out of stock' : 'running low'}:
+                    <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                        ${dealsToNotify.map(d => `<li>${d.title} (${d.quantity} left)</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            document.body.appendChild(notification);
+
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(`KFH Rewards: ${title}`, {
+                    body: `${dealsToNotify.length} deal(s) ${isOutOfStock ? 'out of stock' : 'running low'}`,
+                });
+            }
+
+            notificationTimeout = setTimeout(() => {
+                notification.remove();
+            }, 15000);
+        }
+
+        function setupAutoRefresh() {
+            const autoRefreshCheckbox = document.getElementById('autoRefresh');
+            const intervalSelect = document.getElementById('refreshInterval');
+
+            function startAutoRefresh() {
+                if (refreshTimer) clearInterval(refreshTimer);
+                
+                if (autoRefreshCheckbox.checked) {
+                    const interval = parseInt(intervalSelect.value) * 1000;
+                    refreshTimer = setInterval(updateDeals, interval);
+                }
+            }
+
+            autoRefreshCheckbox.addEventListener('change', startAutoRefresh);
+            intervalSelect.addEventListener('change', startAutoRefresh);
+
+            startAutoRefresh();
+        }
+
+        document.getElementById('refreshBtn').addEventListener('click', updateDeals);
+
+        // Request notification permission
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+
+        // Initialize
+        updateDeals();
+        setupAutoRefresh();
+    </script>
+</body>
+</html>
