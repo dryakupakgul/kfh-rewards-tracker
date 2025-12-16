@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 
 # Deal configuration
 DEALS = [
-   # ===== FOOD DELIVERY =====
     {
         'id': '113316',
         'title': '5 KD Off from Talabat',
@@ -84,8 +83,6 @@ DEALS = [
         'url': 'https://rewards.kfh/redemption/dealdetails/115622/6-Months-talabat-pro-Subscription',
         'points': '3000 KP'
     },
-    
-    # ===== COFFEE & CAFES =====
     {
         'id': '115685',
         'title': '5 KD Off from Caribou Coffee',
@@ -110,8 +107,6 @@ DEALS = [
         'url': 'https://rewards.kfh/redemption/dealdetails/115078/30-off-from-Caldo-Restaurant',
         'points': '100 KP'
     },
-    
-    # ===== RESTAURANTS =====
     {
         'id': '113947',
         'title': '9 KD off on Shrimp Mumawash box from The Ranch',
@@ -148,8 +143,6 @@ DEALS = [
         'url': 'https://rewards.kfh/redemption/dealdetails/113256/10-KD-Off-from-Al-Rifai',
         'points': '10000 KP'
     },
-    
-    # ===== GIFT CARDS & DIGITAL =====
     {
         'id': '115315',
         'title': '$10 iTunes Gift Card',
@@ -192,8 +185,6 @@ DEALS = [
         'url': 'https://rewards.kfh/redemption/dealdetails/115394/Xbox-Live-3-months-free-subscription',
         'points': '8000 KP'
     },
-    
-    # ===== TELECOM =====
     {
         'id': '115357',
         'title': '5 KD from Zain',
@@ -206,16 +197,12 @@ DEALS = [
         'url': 'https://rewards.kfh/redemption/dealdetails/115371/5KD-from-STC',
         'points': '5000 KP'
     },
-    
-    # ===== ENTERTAINMENT =====
     {
         'id': '115147',
         'title': '3 KD Off on Starzplay Sports',
         'url': 'https://rewards.kfh/redemption/dealdetails/115147/3-KD-Off-on-Starzplay--Sports-Package',
         'points': '3000 KP'
     },
-    
-    # ===== SHOPPING & RETAIL =====
     {
         'id': '113933',
         'title': '5 KD Off from AlFuhood App',
