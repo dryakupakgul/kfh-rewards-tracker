@@ -66,21 +66,9 @@ DEALS = [
         'points': '3000 KP'
     },
     {
-        'id': '115631',
-        'title': '3 KD Off from Bleems',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115631/3-KD-Off-from-Bleems',
-        'points': '3000 KP'
-    },
-    {
         'id': '115482',
         'title': '3 KD Off from Cari',
         'url': 'https://rewards.kfh/redemption/dealdetails/115482/3-KD-Off-from-Cari',
-        'points': '3000 KP'
-    },
-    {
-        'id': '115622',
-        'title': '6 Months talabat pro Subscription',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115622/6-Months-talabat-pro-Subscription',
         'points': '3000 KP'
     },
     {
@@ -100,36 +88,6 @@ DEALS = [
         'title': '5 KD gift card from COFE App',
         'url': 'https://rewards.kfh/redemption/dealdetails/113244/Get-a-5-KD-gift-card-from-COFE-App',
         'points': '5000 KP'
-    },
-    {
-        'id': '115078',
-        'title': '30% off from Caldo Restaurant',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115078/30-off-from-Caldo-Restaurant',
-        'points': '100 KP'
-    },
-    {
-        'id': '113947',
-        'title': '9 KD off on Shrimp Mumawash box from The Ranch',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113947/9-KD-off-on-Shrimp-Mumawash-box',
-        'points': '9000 KP'
-    },
-    {
-        'id': '113943',
-        'title': '10 KD Off Catering from BBQ Burger',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113943/10-KD-Off-Catering-burger--catering-from-BBQ-Burger-store--website',
-        'points': '10000 KP'
-    },
-    {
-        'id': '113942',
-        'title': '5 KD Off Burger Box from BBQ Burger',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113942/5-KD-Off-Burger-Box-or-Mashawi-orders-from-BBQ-Burger-store--website',
-        'points': '5000 KP'
-    },
-    {
-        'id': '113330',
-        'title': '3 KD Off from Shawarma Elestez',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113330/3-KD-Off-from-Shawarma-Elestez-website',
-        'points': '3000 KP'
     },
     {
         'id': '115396',
