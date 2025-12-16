@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 
 # Deal configuration
 DEALS = [
+   # ===== FOOD DELIVERY =====
     {
         'id': '113316',
         'title': '5 KD Off from Talabat',
@@ -30,10 +31,28 @@ DEALS = [
         'points': '3000 KP'
     },
     {
-        'id': '115315',
-        'title': '$10 iTunes Gift Card',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115315/10-iTunes-Gift-Card',
-        'points': '3500 KP'
+        'id': '113005',
+        'title': '10 KD Off from Talabat',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113005/10-KD-Off-from-Talabat',
+        'points': '10000 KP'
+    },
+    {
+        'id': '115708',
+        'title': '12 KD off from Keeta',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115708/Get-12-KD-off-from-Keeta',
+        'points': '12000 KP'
+    },
+    {
+        'id': '115707',
+        'title': '6 KD off from Keeta',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115707/Get-6-KD-off-from-Keeta',
+        'points': '6000 KP'
+    },
+    {
+        'id': '115706',
+        'title': '3 KD off from Keeta',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115706/Get-3-KD-off-from-Keeta',
+        'points': '3000 KP'
     },
     {
         'id': '112772',
@@ -46,6 +65,198 @@ DEALS = [
         'title': '3 KD Deliveroo Wallet recharge',
         'url': 'https://rewards.kfh/redemption/dealdetails/112773/3-KD-Deliveroo-Wallet-recharge',
         'points': '3000 KP'
+    },
+    {
+        'id': '115631',
+        'title': '3 KD Off from Bleems',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115631/3-KD-Off-from-Bleems',
+        'points': '3000 KP'
+    },
+    {
+        'id': '115482',
+        'title': '3 KD Off from Cari',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115482/3-KD-Off-from-Cari',
+        'points': '3000 KP'
+    },
+    {
+        'id': '115622',
+        'title': '6 Months talabat pro Subscription',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115622/6-Months-talabat-pro-Subscription',
+        'points': '3000 KP'
+    },
+    
+    # ===== COFFEE & CAFES =====
+    {
+        'id': '115685',
+        'title': '5 KD Off from Caribou Coffee',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115685/5-KD-Off-from-Caribou-Coffee',
+        'points': '5000 KP'
+    },
+    {
+        'id': '115684',
+        'title': '3 KD Off from Caribou Coffee',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115684/3-KD-Off-from-Caribou-Coffee',
+        'points': '3000 KP'
+    },
+    {
+        'id': '113244',
+        'title': '5 KD gift card from COFE App',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113244/Get-a-5-KD-gift-card-from-COFE-App',
+        'points': '5000 KP'
+    },
+    {
+        'id': '115078',
+        'title': '30% off from Caldo Restaurant',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115078/30-off-from-Caldo-Restaurant',
+        'points': '100 KP'
+    },
+    
+    # ===== RESTAURANTS =====
+    {
+        'id': '113947',
+        'title': '9 KD off on Shrimp Mumawash box from The Ranch',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113947/9-KD-off-on-Shrimp-Mumawash-box',
+        'points': '9000 KP'
+    },
+    {
+        'id': '113943',
+        'title': '10 KD Off Catering from BBQ Burger',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113943/10-KD-Off-Catering-burger--catering-from-BBQ-Burger-store--website',
+        'points': '10000 KP'
+    },
+    {
+        'id': '113942',
+        'title': '5 KD Off Burger Box from BBQ Burger',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113942/5-KD-Off-Burger-Box-or-Mashawi-orders-from-BBQ-Burger-store--website',
+        'points': '5000 KP'
+    },
+    {
+        'id': '113330',
+        'title': '3 KD Off from Shawarma Elestez',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113330/3-KD-Off-from-Shawarma-Elestez-website',
+        'points': '3000 KP'
+    },
+    {
+        'id': '115396',
+        'title': '16 KD Off from Al Rifai',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115396/16-KD-Off-from-Al-Rifai-On-the-Go-Minis-Bundle-',
+        'points': '16000 KP'
+    },
+    {
+        'id': '113256',
+        'title': '10 KD Off from Al Rifai',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113256/10-KD-Off-from-Al-Rifai',
+        'points': '10000 KP'
+    },
+    
+    # ===== GIFT CARDS & DIGITAL =====
+    {
+        'id': '115315',
+        'title': '$10 iTunes Gift Card',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115315/10-iTunes-Gift-Card',
+        'points': '3500 KP'
+    },
+    {
+        'id': '112845',
+        'title': '$5 iTunes Gift Card',
+        'url': 'https://rewards.kfh/redemption/dealdetails/112845/5-iTunes-Gift-Card',
+        'points': '2000 KP'
+    },
+    {
+        'id': '115336',
+        'title': '$10 Google Play Gift Card',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115336/10-Google-Play-Gift-Card',
+        'points': '3500 KP'
+    },
+    {
+        'id': '115346',
+        'title': '$10 Amazon USA Gift Card',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115346/Amazon-10-USA-Gift-Card',
+        'points': '3500 KP'
+    },
+    {
+        'id': '115391',
+        'title': '$10 Nintendo USA Gift Card',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115391/Nintendo-10-USA-Gift-Card',
+        'points': '3500 KP'
+    },
+    {
+        'id': '115395',
+        'title': '$25 XBOX USA Gift Card',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115395/XBOX-25-USA-Gift-Card',
+        'points': '8000 KP'
+    },
+    {
+        'id': '115394',
+        'title': 'Xbox Live 3 months subscription',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115394/Xbox-Live-3-months-free-subscription',
+        'points': '8000 KP'
+    },
+    
+    # ===== TELECOM =====
+    {
+        'id': '115357',
+        'title': '5 KD from Zain',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115357/5KD-from-Zain',
+        'points': '5000 KP'
+    },
+    {
+        'id': '115371',
+        'title': '5 KD from STC',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115371/5KD-from-STC',
+        'points': '5000 KP'
+    },
+    
+    # ===== ENTERTAINMENT =====
+    {
+        'id': '115147',
+        'title': '3 KD Off on Starzplay Sports',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115147/3-KD-Off-on-Starzplay--Sports-Package',
+        'points': '3000 KP'
+    },
+    
+    # ===== SHOPPING & RETAIL =====
+    {
+        'id': '113933',
+        'title': '5 KD Off from AlFuhood App',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113933/5-KD-Off-from-AlFuhood-App--website',
+        'points': '5000 KP'
+    },
+    {
+        'id': '115667',
+        'title': '5 KD voucher from Blue outdoors',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115667/5-KD-voucher-from-Blue-outdoors',
+        'points': '5000 KP'
+    },
+    {
+        'id': '115490',
+        'title': '50 KD off from Flowers & Beyond',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115490/50-KD-off-from-Flowers--Beyond',
+        'points': '50000 KP'
+    },
+    {
+        'id': '112920',
+        'title': '20 KD Off from Best Al-Yousifi',
+        'url': 'https://rewards.kfh/redemption/dealdetails/112920/20-KD-Off-from-Best-Al-Yousifi',
+        'points': '20000 KP'
+    },
+    {
+        'id': '113150',
+        'title': '20 KD Off from H&S Store',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113150/20-KD-Off-from-HS-Store',
+        'points': '20000 KP'
+    },
+    {
+        'id': '115173',
+        'title': '10 KD voucher from Usim',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115173/Get-10KD-voucher-from-Usim',
+        'points': '10000 KP'
+    },
+    {
+        'id': '112804',
+        'title': '15% discount from Pharmatee',
+        'url': 'https://rewards.kfh/redemption/dealdetails/112804/15-discount-from-Pharmatee',
+        'points': '100 KP'
     }
 ]
 
