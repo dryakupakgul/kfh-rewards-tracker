@@ -124,25 +124,25 @@ DEALS = [
         'title': '20 KD Off from H&S Store',
         'url': 'https://rewards.kfh/redemption/dealdetails/113150/20-KD-Off-from-HS-Store',
         'points': '20000 KP'
-    }
+    },
         {
         'id': '115762',
         'title': 'Get 5KD to be used in Winter Wonderland',
         'url': 'https://rewards.kfh/redemption/dealdetails/115762/Get-5-KD-Wallet-Recharge-for-3500-Points',
         'points': '3500 KP'
-    }
+    },
   {
         'id': '115761',
         'title': 'Winter Wonderland Entry Ticket',
         'url': 'https://rewards.kfh/redemption/dealdetails/115761/Winter-Wonderland-Entry-Ticket-',
         'points': '1400 KP'
-  }
+  },
   {
         'id': '115741',
         'title': 'Scientific Centre Entry Ticket',
         'url': 'https://rewards.kfh/redemption/dealdetails/115741/GET-Entry-Plus-ticket-and-save-to-enjoy-the-experience',
         'points': '6000 KP'
-  }
+  },
  {
         'id': '115739',
         'title': 'Flare Black membership',
