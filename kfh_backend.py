@@ -149,6 +149,13 @@ DEALS = [
         'url': 'https://rewards.kfh/redemption/dealdetails/115739/Dont-miss-it--SAVE--GET-50--from-Flare-Black-membership',
         'points': '50000 KP'
  }
+    ,
+ {
+        'id': '115676',
+        'title': '50% Discount from Cari',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115676/50-Discount-from-Cari',
+        'points': '1 KP'
+ }
 ]
 
 # Cache for deal data
