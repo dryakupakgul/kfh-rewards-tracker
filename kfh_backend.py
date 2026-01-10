@@ -66,22 +66,22 @@ DEALS = [
         'points': '3000 KP'
     },
     {
-        'id': '115482',
-        'title': '3 KD Off from Cari',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115482/3-KD-Off-from-Cari',
-        'points': '3000 KP'
+        'id': '115001',
+        'title': '50-KD-Off-from-Safat-Home',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115001/50-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'points': '50000 KP'
     },
     {
-        'id': '115685',
-        'title': '5 KD Off from Caribou Coffee',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115685/5-KD-Off-from-Caribou-Coffee',
-        'points': '5000 KP'
+        'id': '115000',
+        'title': '20-KD-Off-from-Safat-Home',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115000/20-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'points': '20000 KP'
     },
     {
-        'id': '115684',
-        'title': '3 KD Off from Caribou Coffee',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115684/3-KD-Off-from-Caribou-Coffee',
-        'points': '3000 KP'
+        'id': '114000',
+        'title': '10-KD-Off-from-Safat-Home',
+        'url': 'https://rewards.kfh/redemption/dealdetails/114000/10-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'points': '10000 KP'
     },
     {
         'id': '113244',
@@ -151,10 +151,40 @@ DEALS = [
  }
     ,
  {
-        'id': '115676',
-        'title': '50% Discount from Cari',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115676/50-Discount-from-Cari',
-        'points': '1 KP'
+        'id': '115002',
+        'title': '100-KD-Off-from-Safat-Home',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115002/100-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'points': '100000 KP'
+ },
+     {
+        'id': '113935',
+        'title': '15-KD-Off-from-Camouflage-store',
+        'url': 'https://rewards.kfh/redemption/dealdetails/113935/15-KD-Off-from-Camouflage-store',
+        'points': '15000 KP'
+ },
+     {
+        'id': '112921',
+        'title': '30-KD-Off-from-Best-Al-Yousifi',
+        'url': 'https://rewards.kfh/redemption/dealdetails/112921/30-KD-Off-from-Best-Al-Yousifi',
+        'points': '30000 KP'
+ },  
+       {
+        'id': '112920',
+        'title': '20-KD-Off-from-Best-Al-Yousifi',
+        'url': 'https://rewards.kfh/redemption/dealdetails/112920/20-KD-Off-from-Best-Al-Yousifi',
+        'points': '20000 KP'
+ },
+           {
+        'id': '112919',
+        'title': '10-KD-Off-from-Best-Al-Yousifi',
+        'url': 'https://rewards.kfh/redemption/dealdetails/112919/10-KD-Off-from-Best-Al-Yousifi',
+        'points': '10000 KP'
+ },
+          {
+        'id': '115663',
+        'title': '10-KD-LuLu-Hyper-Voucher',
+        'url': 'https://rewards.kfh/redemption/dealdetails/115663/Redeem-Now-Save-Big-Get-10-KD-LuLu-Hyper-Voucher',
+        'points': '10000 KP'
  }
 ]
 
