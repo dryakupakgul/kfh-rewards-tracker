@@ -26,164 +26,164 @@ DEALS = [
     {
         'id': '113316',
         'title': '5 KD Off from Talabat',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113316/3-KD-Off-from-Talabat',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/113316/3-KD-Off-from-Talabat',
         'points': '3000 KP'
     },
     {
         'id': '113005',
         'title': '10 KD Off from Talabat',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113005/10-KD-Off-from-Talabat',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/113005/10-KD-Off-from-Talabat',
         'points': '10000 KP'
     },
     {
         'id': '115708',
         'title': '12 KD off from Keeta',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115708/Get-12-KD-off-from-Keeta',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115708/Get-12-KD-off-from-Keeta',
         'points': '12000 KP'
     },
     {
         'id': '115707',
         'title': '6 KD off from Keeta',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115707/Get-6-KD-off-from-Keeta',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115707/Get-6-KD-off-from-Keeta',
         'points': '6000 KP'
     },
     {
         'id': '115706',
         'title': '3 KD off from Keeta',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115706/Get-3-KD-off-from-Keeta',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115706/Get-3-KD-off-from-Keeta',
         'points': '3000 KP'
     },
     {
         'id': '112772',
         'title': '5 KD Deliveroo Wallet recharge',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112772/5-KD-Deliveroo-Wallet-recharge',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/112772/5-KD-Deliveroo-Wallet-recharge',
         'points': '5000 KP'
     },
     {
         'id': '112773',
         'title': '3 KD Deliveroo Wallet recharge',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112773/3-KD-Deliveroo-Wallet-recharge',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/112773/3-KD-Deliveroo-Wallet-recharge',
         'points': '3000 KP'
     },
     {
         'id': '115001',
         'title': '50-KD-Off-from-Safat-Home',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115001/50-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115001/50-KD-Off-from-Safat-Home-showrooms-App-and-website',
         'points': '50000 KP'
     },
     {
         'id': '115000',
         'title': '20-KD-Off-from-Safat-Home',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115000/20-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115000/20-KD-Off-from-Safat-Home-showrooms-App-and-website',
         'points': '20000 KP'
     },
     {
         'id': '114000',
         'title': '10-KD-Off-from-Safat-Home',
-        'url': 'https://rewards.kfh/redemption/dealdetails/114000/10-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/114000/10-KD-Off-from-Safat-Home-showrooms-App-and-website',
         'points': '10000 KP'
     },
     {
         'id': '113244',
         'title': '5 KD gift card from COFE App',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113244/Get-a-5-KD-gift-card-from-COFE-App',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/113244/Get-a-5-KD-gift-card-from-COFE-App',
         'points': '5000 KP'
     },
     {
         'id': '115396',
         'title': '16 KD Off from Al Rifai',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115396/16-KD-Off-from-Al-Rifai-On-the-Go-Minis-Bundle-',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115396/16-KD-Off-from-Al-Rifai-On-the-Go-Minis-Bundle-',
         'points': '16000 KP'
     },
     {
         'id': '113256',
         'title': '10 KD Off from Al Rifai',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113256/10-KD-Off-from-Al-Rifai',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/113256/10-KD-Off-from-Al-Rifai',
         'points': '10000 KP'
     },
     {
         'id': '115315',
         'title': '$10 iTunes Gift Card',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115315/10-iTunes-Gift-Card',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115315/10-iTunes-Gift-Card',
         'points': '3500 KP'
     },
     {
         'id': '115357',
         'title': '5 KD from Zain',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115357/5KD-from-Zain',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115357/5KD-from-Zain',
         'points': '5000 KP'
     },
     {
         'id': '115371',
         'title': '5 KD from STC',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115371/5KD-from-STC',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115371/5KD-from-STC',
         'points': '5000 KP'
     },
     {
         'id': '113150',
         'title': '20 KD Off from H&S Store',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113150/20-KD-Off-from-HS-Store',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/113150/20-KD-Off-from-HS-Store',
         'points': '20000 KP'
     },
     {
         'id': '115762',
         'title': 'Get 5KD to be used in Winter Wonderland',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115762/Get-5-KD-Wallet-Recharge-for-3500-Points',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115762/Get-5-KD-Wallet-Recharge-for-3500-Points',
         'points': '3500 KP'
     },
   {
         'id': '115761',
         'title': 'Winter Wonderland Entry Ticket',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115761/Winter-Wonderland-Entry-Ticket-',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115761/Winter-Wonderland-Entry-Ticket-',
         'points': '1400 KP'
   },
   {
         'id': '115741',
         'title': 'Scientific Centre Entry Ticket',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115741/GET-Entry-Plus-ticket-and-save-to-enjoy-the-experience',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115741/GET-Entry-Plus-ticket-and-save-to-enjoy-the-experience',
         'points': '6000 KP'
   },
  {
         'id': '115739',
         'title': 'Flare Black membership',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115739/Dont-miss-it--SAVE--GET-50--from-Flare-Black-membership',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115739/Dont-miss-it--SAVE--GET-50--from-Flare-Black-membership',
         'points': '50000 KP'
  }
     ,
  {
         'id': '115002',
         'title': '100-KD-Off-from-Safat-Home',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115002/100-KD-Off-from-Safat-Home-showrooms-App-and-website',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115002/100-KD-Off-from-Safat-Home-showrooms-App-and-website',
         'points': '100000 KP'
  },
      {
         'id': '113935',
         'title': '15-KD-Off-from-Camouflage-store',
-        'url': 'https://rewards.kfh/redemption/dealdetails/113935/15-KD-Off-from-Camouflage-store',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/113935/15-KD-Off-from-Camouflage-store',
         'points': '15000 KP'
  },
      {
         'id': '112921',
         'title': '30-KD-Off-from-Best-Al-Yousifi',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112921/30-KD-Off-from-Best-Al-Yousifi',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/112921/30-KD-Off-from-Best-Al-Yousifi',
         'points': '30000 KP'
  },  
        {
         'id': '112920',
         'title': '20-KD-Off-from-Best-Al-Yousifi',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112920/20-KD-Off-from-Best-Al-Yousifi',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/112920/20-KD-Off-from-Best-Al-Yousifi',
         'points': '20000 KP'
  },
            {
         'id': '112919',
         'title': '10-KD-Off-from-Best-Al-Yousifi',
-        'url': 'https://rewards.kfh/redemption/dealdetails/112919/10-KD-Off-from-Best-Al-Yousifi',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/112919/10-KD-Off-from-Best-Al-Yousifi',
         'points': '10000 KP'
  },
           {
         'id': '115663',
         'title': '10-KD-LuLu-Hyper-Voucher',
-        'url': 'https://rewards.kfh/redemption/dealdetails/115663/Redeem-Now-Save-Big-Get-10-KD-LuLu-Hyper-Voucher',
+        'url': 'https://rewards.kfh/rewards/catalogue/dealsdetails/115663/Redeem-Now-Save-Big-Get-10-KD-LuLu-Hyper-Voucher',
         'points': '10000 KP'
  }
 ]
